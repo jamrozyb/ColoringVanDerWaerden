@@ -21,8 +21,6 @@ class Game:
 
         self.subsequences = []
 
-
-
         #we start from any number
         for i in range(n-k+1):
             #we get any possible difference between elements in a subsequence
@@ -35,7 +33,6 @@ class Game:
                 if len(this_subsequence)==k:
                     self.subsequences.append(this_subsequence)
 
-
         # tab contain all players subsequences possible in future,
         self.possible_players_subsequences = [copy.deepcopy(self.subsequences),copy.deepcopy(self.subsequences)]
         number_all_subsequences = len(self.subsequences)
@@ -46,6 +43,7 @@ class Game:
     def choose_number(self,player,i):
         if self.properties[i-1]!=0:
             print(f"Number {i} is already occupied. Choose another number.")
+            return self
         else:
             print(f"Player {player} chooses number {i}.")
             self.properties[i-1]=player
@@ -53,7 +51,7 @@ class Game:
             print(self.tab)
             print(self.properties)
 
-            print(self.players)
+            #print(self.players)
 
             self.update_possible_subsequences_and_scores(player,i)
 
@@ -72,13 +70,13 @@ class Game:
             if i in self.possible_players_subsequences[player-1][j]:
                 self.score_players_subsequences[player-1][j] += 1
 
-        print("possible_players_subsequences:")
-        print(self.possible_players_subsequences[0])
-        print(self.possible_players_subsequences[1])
+        #print("possible_players_subsequences:")
+        #print(self.possible_players_subsequences[0])
+        #print(self.possible_players_subsequences[1])
 
-        print("score_players_subsequences:")
-        print(self.score_players_subsequences[0])
-        print(self.score_players_subsequences[1])
+        #print("score_players_subsequences:")
+        #print(self.score_players_subsequences[0])
+        #print(self.score_players_subsequences[1])
 
     def losing_condition(self,last_player):
         end = False
@@ -120,8 +118,8 @@ class Game:
                 # field not empty
                 else:
                     occurrences[i] = math.inf
-            print("occurrences")
-            print(occurrences)
+            #print("occurrences")
+            #print(occurrences)
 
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
@@ -131,7 +129,7 @@ class Game:
                 # take field which appear at least times possible sequences
                 prefer_field= occurrences.index(min(occurrences))
 
-            print ("prefer_field:", prefer_field)
+            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
@@ -155,8 +153,8 @@ class Game:
                 # field not empty
                 else:
                     occurrences[i] = math.inf
-            print("occurrences")
-            print(occurrences)
+            #print("occurrences")
+            #print(occurrences)
 
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
@@ -166,7 +164,7 @@ class Game:
                 # take field which appear at least times  in second player possible sequences
                 prefer_field= occurrences.index(min(occurrences))
 
-            print ("prefer_field:", prefer_field)
+            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
@@ -200,8 +198,8 @@ class Game:
 
                     print("inf, j!=0 : ", i)
 
-            print("occurrences")
-            print(occurrences)
+            #print("occurrences")
+            #print(occurrences)
 
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
@@ -211,7 +209,7 @@ class Game:
                 # take field which appear at least times possible sequences
                 prefer_field= occurrences.index(min(occurrences))
 
-            print ("prefer_field:", prefer_field)
+            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
@@ -223,7 +221,7 @@ class Game:
             prefer_field =available[random.randint(0, n-1)]
             self.choose_number(player,prefer_field +1 )
 
-        else : print ("wrong strategy")
+        else: print ("wrong strategy")
 
     def available_fields(self):
         print("properties")
