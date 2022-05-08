@@ -1,5 +1,11 @@
 class PlayerLost(Exception):
     pass
 
-class Raw(Exception):
+class Draw(Exception):
+    pass
+
+class OccupiedNumber(Exception):
+    pass
+
+class FieldOutsideTheIndex(Exception):
     pass

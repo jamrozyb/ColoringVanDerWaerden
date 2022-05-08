@@ -1,6 +1,8 @@
 import copy
 import math
 import random
+from termcolor import colored
+
 
 from GameError import *
 
@@ -41,18 +43,19 @@ class Game:
         self.score_players_subsequences=[[0 for i in range(number_all_subsequences)],[0 for i in range(number_all_subsequences)]]
 
     def choose_number(self,player,i):
+        if i <=0 or i>len(self.properties):
+            print(f"Field with index {i} does not exist.")
+            raise FieldOutsideTheIndex()
         if self.properties[i-1]!=0:
             print(f"Number {i} is already occupied. Choose another number.")
-            return self
+            raise OccupiedNumber()
         else:
-            print(f"Player {player} chooses number {i}.")
+            if player == 1:
+                print(f"You chooses number {i}.")
+            if player ==2:
+                print(f"Computer chooses number {i}.")
             self.properties[i-1]=player
             self.players[player-1].append(i)
-            print(self.tab)
-            print(self.properties)
-
-            #print(self.players)
-
             self.update_possible_subsequences_and_scores(player,i)
 
     def update_possible_subsequences_and_scores(self,player,i):
@@ -82,7 +85,11 @@ class Game:
         end = False
         for subsequence in self.subsequences:
             if end == True:
-                print(f"Player number {last_player} has lost.")
+                if last_player == 1:
+                    print(f"You lost.")
+                if last_player ==2:
+                    print(f"Computer lost.")
+                #print(f"Player number {last_player} has lost.")
                 raise PlayerLost()
                 return
             this_end = True
@@ -96,7 +103,7 @@ class Game:
         # if no empty field
         if not 0 in self.properties:
             print("Game end, draw")
-            raise Draw
+            raise Draw()
 
     def computer_movement(self,player,strategy="defensive"):
         second_player=self.other_player(player)
@@ -231,6 +238,22 @@ class Game:
             if (j==0):
                 field.append(i)
         return field
+
+    def preatyPrintFields(self):
+        colors_map = {
+            0:"white",
+            1:"green",
+            2: "blue"
+        }
+        print(colored("you", colors_map.get(1)))
+        print(colored("computer", colors_map.get(2)))
+
+        for i,properties in  enumerate(self.properties):
+            if((i)%10 ==0 and i!=0 ):
+                print(" | ")
+            print ( " | ",end ="")
+            print (colored((i +1) , colors_map.get(properties)), end="")
+        print ()
 
     @staticmethod
     def other_player(player):

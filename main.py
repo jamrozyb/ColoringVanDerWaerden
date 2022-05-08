@@ -93,10 +93,24 @@ while not endgame:
         player = Game.other_player(last_player)
         last_player = player
 
+        game.preatyPrintFields()
+
         # user
         if player==1:
-            i = int(input("Choose number: "))
-            game.choose_number(player,i)
+            while True:
+                try:
+                    while True:
+                        i = input("Choose number: ")
+                        try:
+                            i = int(i)
+                            break
+                        except:
+                            print("This is not an integer")
+                            continue
+                    game.choose_number(player,i)
+                    break
+                except (OccupiedNumber,FieldOutsideTheIndex):
+                    pass
 
         # computer
         elif player==2:
