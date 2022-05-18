@@ -90,6 +90,7 @@ while not endgame:
         last_player = 2
 
     while True:
+        print()
         player = Game.other_player(last_player)
         last_player = player
 

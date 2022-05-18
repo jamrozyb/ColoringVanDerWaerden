@@ -51,7 +51,7 @@ class Game:
             raise OccupiedNumber()
         else:
             if player == 1:
-                print(f"You chooses number {i}.")
+                print(f"You choose number {i}.")
             if player ==2:
                 print(f"Computer chooses number {i}.")
             self.properties[i-1]=player
@@ -249,7 +249,7 @@ class Game:
         print(colored("computer", colors_map.get(2)))
 
         for i,properties in  enumerate(self.properties):
-            if((i)%10 ==0 and i!=0 ):
+            if((i)%25 ==0 and i!=0 ):
                 print(" | ")
             print ( " | ",end ="")
             print (colored((i +1) , colors_map.get(properties)), end="")
