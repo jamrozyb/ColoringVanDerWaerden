@@ -184,8 +184,6 @@ class Game:
                 else:
                     occurrences[i] = math.inf
 
-                    print("inf, j!=0 : ", i)
-
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
                 prefer_field = self.available_fields()[0]
@@ -207,8 +205,6 @@ class Game:
         else: print ("wrong strategy")
 
     def available_fields(self):
-        print("properties")
-        print(self.properties)
         field=[]
         for i, j in enumerate(self.properties):
             if (j==0):
