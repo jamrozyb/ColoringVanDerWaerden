@@ -1,4 +1,4 @@
-from GameBasic import Game
+from GameBasic import GameBasic
 from GameError import *
 import time
 import math
@@ -83,7 +83,7 @@ while not endgame:
             continue
         passed = True
 
-    game = Game(n,k)
+    game = GameBasic(n,k)
 
     last_player = 1
     if who_start == 1:
@@ -91,7 +91,7 @@ while not endgame:
 
     while True:
         print()
-        player = Game.other_player(last_player)
+        player = game.other_player(last_player)
         last_player = player
 
         game.preatyPrintFields()

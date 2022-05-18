@@ -4,14 +4,12 @@ import random
 
 from GameError import *
 
-class Game:
+class GameBasic:
 
 
     def __init__(self,n,k):
 
         # check whether arguments are valid
-        if n<5 or k<=2 or 2*k-1>=n:
-            raise ValueError('Invalid arguments.')
         self.n = n
         self.k = k
 
@@ -213,19 +211,24 @@ class Game:
 
     def preatyPrintFields(self):
         colors_map = {
-            0:"white",
-            1:"green",
-            2: "blue"
+            0: False,
+            1:"Y",
+            2:"C"
         }
-        print("you")
-        print("computer")
+        print("you: ", colors_map.get(1))
+        print("computer: ", colors_map.get(2))
 
         for i,properties in  enumerate(self.properties):
             if((i)%25 ==0 and i!=0 ):
                 print(" | ")
             print ( " | ",end ="")
-            print ((i +1), end="")
+            color = colors_map.get(properties)
+            if color:
+                print (colors_map.get(properties) ,end="")
+            else:
+                print(i+1, end="")
         print ()
+
 
     @staticmethod
     def other_player(player):

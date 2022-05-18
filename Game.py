@@ -3,17 +3,13 @@ import math
 import random
 from termcolor import colored
 
-
 from GameError import *
 
 class Game:
 
-
     def __init__(self,n,k):
 
         # check whether arguments are valid
-        if n<5 or k<=2 or 2*k-1>=n:
-            raise ValueError('Invalid arguments.')
         self.n = n
         self.k = k
 
