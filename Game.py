@@ -73,14 +73,6 @@ class Game:
             if i in self.possible_players_subsequences[player-1][j]:
                 self.score_players_subsequences[player-1][j] += 1
 
-        #print("possible_players_subsequences:")
-        #print(self.possible_players_subsequences[0])
-        #print(self.possible_players_subsequences[1])
-
-        #print("score_players_subsequences:")
-        #print(self.score_players_subsequences[0])
-        #print(self.score_players_subsequences[1])
-
     def losing_condition(self,last_player):
         end = False
         for subsequence in self.subsequences:
@@ -89,7 +81,6 @@ class Game:
                     print(f"You lost.")
                 if last_player ==2:
                     print(f"Computer lost.")
-                #print(f"Player number {last_player} has lost.")
                 raise PlayerLost()
                 return
             this_end = True
@@ -125,8 +116,6 @@ class Game:
                 # field not empty
                 else:
                     occurrences[i] = math.inf
-            #print("occurrences")
-            #print(occurrences)
 
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
@@ -135,8 +124,6 @@ class Game:
             else :
                 # take field which appear at least times possible sequences
                 prefer_field= occurrences.index(min(occurrences))
-
-            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
@@ -160,8 +147,6 @@ class Game:
                 # field not empty
                 else:
                     occurrences[i] = math.inf
-            #print("occurrences")
-            #print(occurrences)
 
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
@@ -170,8 +155,6 @@ class Game:
             else :
                 # take field which appear at least times  in second player possible sequences
                 prefer_field= occurrences.index(min(occurrences))
-
-            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
@@ -205,9 +188,6 @@ class Game:
 
                     print("inf, j!=0 : ", i)
 
-            #print("occurrences")
-            #print(occurrences)
-
             if (min(occurrences) == math.inf):
                 # player loose in any case, so we take firts available field
                 prefer_field = self.available_fields()[0]
@@ -215,8 +195,6 @@ class Game:
             else :
                 # take field which appear at least times possible sequences
                 prefer_field= occurrences.index(min(occurrences))
-
-            #print ("prefer_field:", prefer_field)
 
             self.choose_number(player,prefer_field +1 )
 
