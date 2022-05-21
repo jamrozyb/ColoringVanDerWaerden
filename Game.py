@@ -174,10 +174,6 @@ class Game:
                         #field "j", choose it is loose
                             if  (self.score_players_subsequences[player-1][subsequences_i] == (self.k - 1)):
                                 occurrences[i] = math.inf
-                                print("inf loss i: ", i)
-                                print("self.score_players_subsequences[player-1][subsequences_i] ",
-                                      self.score_players_subsequences[player-1][subsequences_i])
-                                print("subsequences_i ",subsequences_i)
                 # field not empty
                 else:
                     occurrences[i] = math.inf
