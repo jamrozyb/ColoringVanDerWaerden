@@ -72,19 +72,26 @@ class GameBasic:
     def losing_condition(self,last_player):
         end = False
         for subsequence in self.subsequences:
-            if end == True:
-                if last_player == 1:
-                    print(f"You lost.")
-                if last_player ==2:
-                    print(f"Computer lost.")
-                raise PlayerLost()
-                return
             this_end = True
             for i in range(len(subsequence)):
                 if subsequence[i] not in self.players[last_player-1]:
                     this_end = False
             end = end + this_end
+            if end:
+                if last_player == 1:
+                    print(f"You lost.")
+                if last_player == 2:
+                    print(f"Computer lost.")
+                self.print_lost_subsequence(subsequence)
+                raise PlayerLost()
+                return
         print("Game has not ended yet.")
+
+    def print_lost_subsequence(self,subsequence):
+        print("Lost subsequence: ")
+        for s in subsequence:
+            print(f"{s} ",end = "")
+        print()
 
     def draw_condition(self): #check after losing conditions
         # if no empty field
